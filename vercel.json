@@ -2,9 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [{ "type": "host", "value": "www.vorscorp.com" }],
-      "destination": "https://vorscorp.com/:path*",
+      "destination": "https://vorscorp.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path+",
+      "has": [{ "type": "host", "value": "www.vorscorp.com" }],
+      "destination": "https://vorscorp.com/:path+",
       "permanent": true
     }
   ],
