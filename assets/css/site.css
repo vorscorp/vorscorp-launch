@@ -1,0 +1,369 @@
+/* ============================================================
+   Vorscorp — temporary pre-launch page
+   Monochrome. Static. One centred column, one screen.
+   ============================================================ */
+
+@font-face {
+  font-family: "InterVariable";
+  src: url("/assets/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Colour — the entire system */
+  --ink:        #F6F5F2;   /* warm off-white */
+  --ground:     #0B0B0B;   /* near black */
+  --grey:       #A1A1A1;   /* supporting neutral */
+  --hairline:   rgba(246, 245, 242, 0.14);
+  --hairline-faint: rgba(246, 245, 242, 0.06);
+
+  /* Type */
+  --sans: "InterVariable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Measure */
+  --grid-max: 1320px;
+  --gutter: clamp(24px, 5vw, 72px);
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--ink); color: var(--ground); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+p { margin: 0; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------
+   Structural rules — two static hairlines framing the column.
+   Wide viewports only. Purely decorative, never animated.
+   ------------------------------------------------------------ */
+
+.rules { display: none; }
+
+@media (min-width: 1024px) {
+  .rules {
+    display: block;
+    position: fixed;
+    inset: 0;
+    max-width: var(--grid-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .rules__line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--hairline-faint);
+  }
+  .rules__line--start { left: var(--gutter); }
+  .rules__line--end   { right: var(--gutter); }
+}
+
+/* ------------------------------------------------------------
+   Frame
+   ------------------------------------------------------------ */
+
+.frame {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: var(--grid-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Stage: the centred column ----------------------------- */
+
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-block: clamp(40px, 7vh, 112px);
+}
+
+/* Clear space below the mark is held here, so the wordmark is never
+   crowded by the line beneath it. */
+.mark {
+  width: clamp(150px, 44vw, 340px);
+  margin-bottom: clamp(44px, 7.5vh, 96px);
+}
+
+/* The upper bound is capped against viewport height as well as width,
+   so the whole column still resolves on a single screen. */
+.statement {
+  margin: 0 0 clamp(40px, 6vh, 76px);
+  font-size: clamp(2.25rem, 6vw, min(4.25rem, 8.5vh));
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+/* Line one is fixed; line two wraps on its own when the screen is too
+   narrow to hold it, which keeps the break points sensible. */
+.statement__line { display: block; }
+
+.launch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: clamp(36px, 5.5vh, 64px);
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.launch__date {
+  margin-top: 0.9em;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stage__note {
+  color: var(--grey);
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+
+/* ---- Counter ----------------------------------------------- */
+
+.counter {
+  margin-top: clamp(20px, 2.6vh, 32px);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(8px, 1.4vw, 18px);
+}
+
+.counter__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55em;
+}
+
+/* Capped against viewport height for the same reason the statement is:
+   otherwise on a short desktop the statement shrinks and the digits do
+   not, and the countdown ends up rivalling the line it sits under. */
+.counter__value {
+  font-size: clamp(1.75rem, 4.6vw, min(3rem, 6vh));
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.counter__name {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.counter__sep {
+  font-size: clamp(1.25rem, 3.2vw, 2rem);
+  line-height: 1;
+  color: var(--grey);
+  opacity: 0.5;
+  /* Optically align the colon with the digits, not their baseline box. */
+  transform: translateY(-0.08em);
+}
+
+/* Launch state — replaces the digits at T-0. */
+.counter--launched { gap: 0; }
+
+.counter__state {
+  font-size: clamp(1.5rem, 3.6vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---- Colophon ---------------------------------------------- */
+
+.colophon {
+  border-top: 1px solid var(--hairline-faint);
+  padding-block: clamp(18px, 2.6vh, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.colophon__rights,
+.colophon__links {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.colophon__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.colophon__links a {
+  color: inherit;
+  text-decoration: none;
+  padding-block: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 180ms var(--ease), border-color 180ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .colophon__links a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--hairline);
+  }
+}
+
+.colophon__links a:focus-visible {
+  outline: none;
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+/* ------------------------------------------------------------
+   Short viewports — small phones and landscape handsets. The
+   rhythm compresses rather than the type, so the hierarchy is
+   unchanged; only the air between the bands is spent.
+   ------------------------------------------------------------ */
+
+@media (max-height: 620px) {
+  .stage      { padding-block: 24px; }
+  .mark       { margin-bottom: 28px; }
+  .statement  { margin-bottom: 26px; }
+  .launch     { margin-bottom: 24px; }
+  .counter    { margin-top: 16px; }
+  .colophon   { padding-block: 12px; }
+}
+
+/* ------------------------------------------------------------
+   Scramble — see assets/js/scramble.js
+   ------------------------------------------------------------ */
+
+.scramble {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Character cells are only present while an animation is running. */
+.scramble__cell {
+  display: inline-block;
+  text-align: center;
+}
+
+.scramble:focus { outline: none; }
+
+.scramble:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-decoration-thickness: 0.03em;
+  text-underline-offset: 0.14em;
+  text-decoration-color: var(--grey);
+}
+
+/* ------------------------------------------------------------
+   Entrance — one pass, on load. Nothing loops.
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .mark,
+  .statement__line,
+  .launch,
+  .stage__note {
+    animation: enter 900ms var(--ease) both;
+  }
+
+  .mark                         { animation-delay: 40ms; }
+  .statement__line:nth-child(1) { animation-delay: 150ms; }
+  .statement__line:nth-child(2) { animation-delay: 220ms; }
+  .launch                       { animation-delay: 340ms; }
+  .stage__note                  { animation-delay: 440ms; }
+
+  /* The last element on the page fades without rising: a downward
+     transform on the bottom-most box counts as scrollable overflow,
+     which flashes a scrollbar for the length of the entrance. */
+  .colophon {
+    animation: fade 900ms var(--ease) both;
+    animation-delay: 520ms;
+  }
+
+  @keyframes enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @keyframes fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
