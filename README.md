@@ -1,4 +1,4 @@
-# Vorscorp — temporary launch page
+# Vorscorp temporary launch page
 
 The single page served at **vorscorp.com** until the full institutional site
 launches on **15 October 2026, 00:00 Malaysia Time (UTC+08:00)**.
@@ -42,13 +42,24 @@ python3 -m http.server 4322
 Then open http://localhost:4322. Paths are root-absolute, so open it through a
 server rather than as a `file://` document.
 
-## Deploy
+## Deployed
 
-Any static host. On Vercel: import the directory, framework preset **Other**,
-no build command, output directory `.`. `vercel.json` only sets cache headers.
-Point the `vorscorp.com` apex and `www` records at the deployment.
+Live at **https://vorscorp.com** since 16 August 2026.
 
-On 15 October 2026 this deployment is replaced by the full site.
+- **Host:** Vercel, project `vorscorp-launch`, team `tariqharziqs-projects`.
+- **Deploys:** automatic. A push to `main` goes live. There is no build step,
+  so it takes seconds.
+- **DNS:** GoDaddy holds the zone. One A record on `@` pointing to Vercel, and
+  a CNAME on `www` pointing to the apex. Do not use GoDaddy forwarding: it
+  redirects to Vercel, Vercel redirects back, and the domain loops.
+- **www:** redirects to the apex with a 308, via the `redirects` block in
+  `vercel.json` rather than a dashboard setting, so the rule lives in the repo.
+  A root rule and a `/:path+` rule are both needed. `/:path*` alone leaves the
+  bare root serving a 200.
+- **Certificates:** Let's Encrypt on both hostnames, renewing automatically.
+
+On 15 October 2026 this deployment is replaced by the full site. Doing that
+means repointing the domain, so it is a real step, not a switch.
 
 ## The two moving parts
 
