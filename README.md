@@ -3,9 +3,8 @@
 The single page served at **vorscorp.com** until the full institutional site
 launches on **15 October 2026, 00:00 Malaysia Time (UTC+08:00)**.
 
-This is **not** the Vorscorp website. That is a separate, spec-first Next.js
-build at `../vorscorpwebsite` and is unaffected by anything here. This repo
-exists to be replaced.
+This is **not** the Vorscorp website. That is a separate build, unaffected by
+anything here. This repo exists to be replaced.
 
 ## What is on the page
 
@@ -15,9 +14,9 @@ links. Nothing else, deliberately. Do not add sections, forms, metrics, or
 pages: the restraint is the design.
 
 Both social URLs were verified against live pages rather than assumed:
-`https://instagram.com/vorscorp` (also recorded as live in the main site's
-`content/site.md`) and `https://www.linkedin.com/company/vorscorp`. If an
-account moves, fix the `href` in `index.html`; nothing else references them.
+`https://instagram.com/vorscorp` and `https://www.linkedin.com/company/vorscorp`.
+If an account moves, fix the `href` in `index.html`; nothing else references
+them.
 
 ## Stack
 
@@ -106,10 +105,9 @@ flashes a scrollbar.
 
 ## Brand assets
 
-`assets/brand/vorscorp-wordmark-white.png` is the founder-supplied wordmark
-copied from `../vorscorpwebsite/brand-assets/logo/`, unmodified. Do not
-regenerate, retrace, recolour or add effects to it. If true SVG masters are
-ever exported, they are a drop-in replacement.
+`assets/brand/vorscorp-wordmark-white.png` is the supplied wordmark,
+unmodified. Do not regenerate, retrace, recolour or add effects to it. If true
+SVG masters are ever exported, they are a drop-in replacement.
 
 `vorscorp-og.png` is the link-preview image: that same wordmark placed on the
 brand field at 1200x630. Nothing was redrawn.
@@ -121,5 +119,5 @@ context never tempts anyone to recolour the white one.
 ## Colour and type
 
 Near black `#0B0B0B`, warm off-white `#F6F5F2`, grey `#A1A1A1`. Nothing else.
-Inter (self-hosted variable subset, shared with the main site) for everything,
-with the system monospace stack for the small technical labels.
+Inter (self-hosted variable subset) for everything, with the system monospace
+stack for the small technical labels.
