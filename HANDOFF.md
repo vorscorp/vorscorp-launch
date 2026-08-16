@@ -45,6 +45,11 @@ These are design decisions, not oversights. Changing them needs a reason.
   or middle dots.
 - **The scramble must always resolve** to the original string, and must stay
   off on touch devices and under `prefers-reduced-motion`.
+- **The site icon is the full wordmark letterboxed on the brand field.** This
+  was a founder decision, taken against the alternative of a V monogram cropped
+  from the same artwork. It is known to read poorly at 16px and 48px: that cost
+  was accepted rather than introduce a monogram the brand has never had. Do not
+  swap it for a letterform without asking.
 
 ## Run it
 ```bash
@@ -104,6 +109,11 @@ alternative is type too small to carry the mark.
 4. **`assets/brand/vorscorp-wordmark-dark.png`** is committed but unused. It is
    kept so that a light background never tempts anyone into recolouring the
    white one.
+5. **Search result favicon is pending Google's crawl.** The site is verified in
+   Google Search Console and indexing was requested on 16 August 2026. The icon
+   only appears in results after Google indexes the page and fetches the icon,
+   which lags. A thin pre-launch page may sit at "Crawled, currently not
+   indexed" for a while. That is normal and needs no fix.
 
 ## Working agreement
 Small, reversible edits. Check the page still fits one screen and that the
