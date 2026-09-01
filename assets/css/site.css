@@ -134,15 +134,16 @@ p { margin: 0; }
    so the whole column still resolves on a single screen. */
 .statement {
   margin: 0 0 clamp(40px, 6vh, 76px);
-  font-size: clamp(2.25rem, 6vw, min(4.25rem, 8.5vh));
+  font-size: clamp(1.625rem, 6vw, min(4.25rem, 8.5vh));
   font-weight: 500;
   line-height: 1.04;
   letter-spacing: -0.035em;
 }
 
-/* Line one is fixed; line two wraps on its own when the screen is too
-   narrow to hold it, which keeps the break points sensible. */
-.statement__line { display: block; }
+/* Both lines are fixed at exactly two: "Engineering" then "Systems of
+   Reasoning." Neither wraps again; the size floor is lowered so line two
+   still fits in 320px without overflow. */
+.statement__line { display: block; white-space: nowrap; }
 
 .launch {
   display: flex;

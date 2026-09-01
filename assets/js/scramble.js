@@ -10,7 +10,8 @@
      3. cells resolve left to right over a duration derived from length
      4. the original string is always restored, exactly
 
-   Not enabled on touch devices or under prefers-reduced-motion.
+   Triggers on hover, keyboard focus, or tap. Not enabled under
+   prefers-reduced-motion.
    ============================================================ */
 
 (function () {
@@ -20,13 +21,12 @@
 
   /* Deterministic timing: a word's animation always takes the same
      time, and no word runs longer than SETTLE_MAX. */
-  var PER_CHAR   = 30;   /* ms added per character */
-  var BASE       = 200;  /* ms floor               */
-  var SETTLE_MAX = 620;  /* ms ceiling             */
+  var PER_CHAR   = 75;   /* ms added per character */
+  var BASE       = 600;  /* ms floor               */
+  var SETTLE_MAX = 1800; /* ms ceiling             */
   var ROLL       = 55;   /* ms between re-rolls; slower than a frame,
                             which is what keeps it from flickering   */
 
-  var hoverQuery  = window.matchMedia("(hover: hover) and (pointer: fine)");
   var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   var measurer = document.createElement("canvas").getContext("2d");
@@ -118,6 +118,7 @@
     this.onEnter = this.start.bind(this);
     el.addEventListener("mouseenter", this.onEnter);
     el.addEventListener("focus", this.onEnter);
+    el.addEventListener("touchstart", this.onEnter, { passive: true });
   }
 
   Scramble.prototype.start = function () {
@@ -215,17 +216,15 @@
     for (var i = 0; i < nodes.length; i++) elements.push(new Scramble(nodes[i]));
 
     var reevaluate = function () {
-      setEnabled(hoverQuery.matches && !motionQuery.matches);
+      setEnabled(!motionQuery.matches);
     };
     reevaluate();
 
     /* addEventListener on MediaQueryList is not universal; fall back. */
     if (motionQuery.addEventListener) {
       motionQuery.addEventListener("change", reevaluate);
-      hoverQuery.addEventListener("change", reevaluate);
     } else if (motionQuery.addListener) {
       motionQuery.addListener(reevaluate);
-      hoverQuery.addListener(reevaluate);
     }
 
     /* A font-size change invalidates cached glyph metrics only by
