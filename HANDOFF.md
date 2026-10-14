@@ -13,7 +13,8 @@ deploy on 16 August 2026.
 
 ## What this is
 A single static page holding `vorscorp.com` until the full institutional site
-launches on 15 October 2026, 00:00 Malaysia Time (UTC+08:00). This repo exists
+launches on 15 October 2026, 8 PM (20:00) Malaysia Time (UTC+08:00); it was
+00:00 until the founder moved it to the evening on 14 October 2026. This repo exists
 to be replaced.
 
 **It is not the Vorscorp website.** That is a separate repository

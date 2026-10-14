@@ -1,7 +1,7 @@
 # Vorscorp temporary launch page
 
 The single page served at **vorscorp.com** until the full institutional site
-launches on **15 October 2026, 00:00 Malaysia Time (UTC+08:00)**.
+launches on **15 October 2026, 8 PM (20:00) Malaysia Time (UTC+08:00)**.
 
 This is **not** the Vorscorp website. That is a separate build, unaffected by
 anything here. This repo exists to be replaced.
@@ -64,7 +64,7 @@ means repointing the domain, so it is a real step, not a switch.
 ## The two moving parts
 
 **Countdown** (`countdown.js`) targets the absolute instant
-`2026-10-15T00:00:00+08:00`. The offset is written into the timestamp, so it
+`2026-10-15T20:00:00+08:00`. The offset is written into the timestamp, so it
 resolves to the same moment regardless of the reader's timezone. Ticks are
 re-aimed at the next whole second, so the display cannot drift after the tab
 has been backgrounded. At zero the digits are replaced by a launch state; the
