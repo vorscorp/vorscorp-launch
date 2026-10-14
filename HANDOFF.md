@@ -79,7 +79,13 @@ no dashboard step.
 5. **Scramble substitute glyphs must be filtered by measured width.** A random
    `W` in a cell sized for an `i` overflows and overlaps its neighbours.
    `scramble.js` measures the charset and picks only glyphs that fit.
-6. **The countdown target must be an absolute instant.** The UTC+08:00 offset
+6. **Assets are cached in the browser for 24 hours** (`vercel.json`), so a changed
+   script or stylesheet is not picked up by someone who loaded the page the day
+   before. When you change a file under `assets/`, change its address in
+   `index.html` too (`countdown.js?v=2`, bump the number). The HTML itself is
+   revalidated on every load, so the new address reaches everyone at once. This
+   bit on 14 October 2026, when the launch moved to 8 PM.
+7. **The countdown target must be an absolute instant.** The UTC+08:00 offset
    is written into the timestamp so it resolves identically in every timezone.
    Never rebuild it from local time parts.
 
