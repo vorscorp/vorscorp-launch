@@ -13,8 +13,8 @@ deploy on 16 August 2026.
 
 ## What this is
 A single static page holding `vorscorp.com` until the full institutional site
-launches on 15 October 2026, 8 PM (20:00) Malaysia Time (UTC+08:00); it was
-00:00 until the founder moved it to the evening on 14 October 2026. This repo exists
+launches on 15 October 2026, 10 PM (22:00) Malaysia Time (UTC+08:00); it was
+00:00, then 8 PM, until the founder moved it two hours later on 15 October 2026. This repo exists
 to be replaced.
 
 **It is not the Vorscorp website.** That is a separate repository
@@ -82,9 +82,10 @@ no dashboard step.
 6. **Assets are cached in the browser for 24 hours** (`vercel.json`), so a changed
    script or stylesheet is not picked up by someone who loaded the page the day
    before. When you change a file under `assets/`, change its address in
-   `index.html` too (`countdown.js?v=2`, bump the number). The HTML itself is
+   `index.html` too (`countdown.js?v=3`, bump the number). The HTML itself is
    revalidated on every load, so the new address reaches everyone at once. This
-   bit on 14 October 2026, when the launch moved to 8 PM.
+   bit on 14 October 2026, when the launch moved to 8 PM, and the number was bumped again
+   on 15 October 2026 when it moved to 10 PM.
 7. **The countdown target must be an absolute instant.** The UTC+08:00 offset
    is written into the timestamp so it resolves identically in every timezone.
    Never rebuild it from local time parts.

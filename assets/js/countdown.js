@@ -1,7 +1,7 @@
 /* ============================================================
    Countdown to the Vorscorp public launch.
 
-   Target: 15 October 2026, 20:00:00 Malaysia Time (UTC+08:00), 8 PM.
+   Target: 15 October 2026, 22:00:00 Malaysia Time (UTC+08:00), 10 PM.
 
    The target is an absolute instant. The offset is written into the
    timestamp, so the value parses to the same epoch millisecond in
@@ -12,7 +12,7 @@
 (function () {
   "use strict";
 
-  var TARGET_ISO = "2026-10-15T20:00:00+08:00";
+  var TARGET_ISO = "2026-10-15T22:00:00+08:00";
   var TARGET = Date.parse(TARGET_ISO);
 
   var counter   = document.querySelector("[data-counter]");
@@ -91,7 +91,7 @@
     if (spoken && minutes !== lastSpokenMinute) {
       lastSpokenMinute = minutes;
       spoken.textContent =
-        "Vorscorp launches on 15 October 2026 at 8 PM Malaysia time, in " +
+        "Vorscorp launches on 15 October 2026 at 10 PM Malaysia time, in " +
         plural(days, "day") + ", " + plural(hours, "hour") + " and " +
         plural(minutes, "minute") + ".";
     }
